@@ -1,0 +1,29 @@
+{% extends "pais/base.html" %}
+
+{% block titulo %}
+Cadastro de Países
+{% endblock titulo %}
+
+{% block conteudo %}
+<form method="post">
+    <!--Aqui eu faço a validação dos dados inseridos no banco com um parametro em python -->
+    {% csrf_token %}
+    <!--Aqui é onde eu pego o nome do país que eu quero inserir no meu banco-->
+    <div class="form-group">
+        {{ form.nome.errors }}
+        <label>Nome: </label>
+        <input type="text" name="nome" class="form-control">
+    </div>
+    <!--Aqui é onde eu pego a sigla do país-->
+    <div class="form-group">
+        {{ form.sigla.errors }}
+        <label>Sigla: </label>
+        <input type="text" name="sigla" class="form-control">
+    </div>
+    <!--Aqui é onde fica o botao para voltar para a instancia anterior ou cadastrar o país-->
+    <div class="form-group">
+        <a href="{% url 'listar_pais' %}" class="btn btn-primary">Voltar</a>
+        <button class="btn btn-primary">Cadastrar</button>
+    </div>
+</form>
+{% endblock conteudo %}

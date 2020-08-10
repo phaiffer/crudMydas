@@ -1,0 +1,33 @@
+{% extends "estado/base.html" %}
+
+{% block titulo %}
+Listagem de Estados por País
+{% endblock titulo %}
+
+{% block conteudo %}
+<table class="table">
+    <thread>
+        <tr>
+            <th>Estado</th>
+            <th>Sigla</th>
+            <th>Ações</th>
+        <tr>
+    </thread>
+    <tbody>
+    {% for i in estado %}
+    <tr>
+        <td><a href="{% url 'listar_estado_id' i.id_estado %}">{{i.nome_estado}}</a></td>
+        <td>{{i.sigla_estado}}</td>
+        <td>
+            <a href="{% url 'editar_estado' i.id_estado %}">Editar</a>
+            <a href="{% url 'remover_estado' i.id_estado  %}">Remover</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'listar_pais' %}" class="btn btn-primary">Voltar</a>
+<a href="{% url 'cad_estado' %}">
+    <button class="btn btn-primary">Cadastrar</button>
+</a>
+{% endblock conteudo %}

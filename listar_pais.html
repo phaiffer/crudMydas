@@ -1,0 +1,32 @@
+{% extends "pais/base.html" %}
+
+{% block titulo %}
+Listagem de Países
+{% endblock titulo %}
+
+{% block conteudo %}
+<table class="table">
+    <thread>
+        <tr>
+            <th>País</th>
+            <th>Sigla</th>
+            <th>Ações</th>
+        <tr>
+    </thread>
+    <tbody>
+    {% for i in pais %}
+    <tr>
+        <td><a href="{% url 'listar_pais_id' i.id %}">{{i.nome}}</a></td>
+        <td>{{i.sigla}}</td>
+        <td>
+            <a href="{% url 'editar_pais' i.id %}">Editar</a>
+            <a href="{% url 'remover_pais' i.id  %}">Remover</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'cadastrar_pais' %}">
+    <button class="btn btn-primary">Cadastrar</button>
+</a>
+{% endblock conteudo %}
